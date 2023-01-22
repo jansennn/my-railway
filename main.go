@@ -9,7 +9,7 @@ import (
 
 	"github.com/labstack/echo/v4"
 	"github.com/labstack/echo/v4/middleware"
-	"my-railway/config"
+	"ratu-melamine-be/config"
 )
 
 var (
