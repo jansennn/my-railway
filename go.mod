@@ -1,4 +1,4 @@
-module ratu-melamine-be
+module my-railway
 
 go 1.18
 
