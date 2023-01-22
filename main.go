@@ -1,118 +1,77 @@
 package main
 
 import (
-	"github.com/gin-contrib/cors"
-	"github.com/gin-gonic/gin"
-	"ratu-melamine-be/config"
-	v1 "ratu-melamine-be/handler/v1"
-	"ratu-melamine-be/middleware"
-	"ratu-melamine-be/repo"
-	"ratu-melamine-be/service"
-	"gorm.io/gorm"
-)
+	"fmt"
+	"net/http"
+	"os"
 
-var (
-	db             		*gorm.DB               		= config.SetupDatabaseConnection()
-	userRepo       		repo.UserRepository    		= repo.NewUserRepo(db)
-	productRepo    		repo.ProductRepository 		= repo.NewProductRepo(db)
-	descriptionRepo  	repo.DescriptionRepository  = repo.NewDescriptionRepo(db)
-	projectRepo 		repo.ProjectRepository		= repo.NewProjectRepo(db)
-	careerRepo 			repo.CareerRepository		= repo.NewCareerRepo(db)
-	produkRepo 			repo.ProdukRepository		= repo.NewProdukRepo(db)
-	imageRepo 			repo.ImageRepository		= repo.NewImageRepo(db)
-	authService    		service.AuthService    		= service.NewAuthService(userRepo)
-	jwtService     		service.JWTService     		= service.NewJWTService()
-	userService    		service.UserService    		= service.NewUserService(userRepo)
-	productService 		service.ProductService 		= service.NewProductService(productRepo)
-	descriptionService  service.DescriptionService  = service.NewDescriptionService(descriptionRepo)
-	projectService 		service.ProjectService		= service.NewProjectService(projectRepo)
-	careerService 		service.CareerService		= service.NewCareerService(careerRepo)
-	produkService 		service.ProdukService		= service.NewProdukService(produkRepo)
-	imageService 		service.ImageService		= service.NewImageService(imageRepo)
-	authHandler    		v1.AuthHandler         		= v1.NewAuthHandler(authService, jwtService, userService)
-	userHandler    		v1.UserHandler         		= v1.NewUserHandler(userService, jwtService)
-	productHandler 		v1.ProductHandler      		= v1.NewProductHandler(productService, jwtService)
-	descriptionHandler  v1.DescriptionHandler  		= v1.NewDescriptionHandler(descriptionService, jwtService)
-	projectHandler		v1.ProjectHandler	 		= v1.NewProjectHandler(projectService)
-	careerHandler		v1.CareerHandler			= v1.NewCareerHandler(careerService)
-	produkHandler		v1.ProdukHandler			= v1.NewProdukHandler(produkService)
-	imageHandler		v1.ImageHandler				= v1.NewImageHandler(imageService)
+	"github.com/labstack/echo/v4"
+	"github.com/labstack/echo/v4/middleware"
 )
 
 func main() {
-	defer config.CloseDatabaseConnection(db)
-	server := gin.Default()
-	config := cors.DefaultConfig()
-	config.AllowAllOrigins = true
-	server.Use(cors.New(config))
+	// Echo instance
+	e := echo.New()
 
-	server.GET("/api/description-public/:id", descriptionHandler.FindOneDescriptionById)
-	server.GET("/api/career-public/", careerHandler.All)
-	authRoutes := server.Group("api/auth")
-	{
-		authRoutes.POST("/login", authHandler.Login)
-		authRoutes.POST("/register", authHandler.Register)
+	// Middleware
+	e.Use(middleware.Logger())
+	e.Use(middleware.Recover())
+
+	// Routes
+	e.GET("/", Welcome)
+	e.GET("/get-user", GetUser)
+	e.GET("/get-order", GetOrder)
+	e.GET("/get-product", GetProduct)
+	e.GET("/get-city", GetCity)
+
+	// Start server
+	e.Logger.Fatal(e.Start(":" + os.Getenv("PORT")))
+}
+
+type jsonResponse struct {
+	Data   string `json:"data"`
+	Status bool   `json:"status"`
+}
+
+// Handler
+func Welcome(c echo.Context) error {
+	welcome := fmt.Sprintln("Welcome To Website Test API \n 1. /get-user \n 2. /get-order \n 3. /get-product")
+
+	return c.String(http.StatusOK, welcome)
+}
+
+func GetUser(c echo.Context) error {
+	response := jsonResponse{
+		Data:   "Data User Berhasil di Get",
+		Status: true,
 	}
 
-	userRoutes := server.Group("api/user", middleware.AuthorizeJWT(jwtService))
-	{
-		userRoutes.GET("/profile", userHandler.Profile)
-		userRoutes.PUT("/profile", userHandler.Update)
+	return c.JSON(http.StatusOK, response)
+}
+
+func GetOrder(c echo.Context) error {
+	response := jsonResponse{
+		Data:   "Data Order Berhasil di Get",
+		Status: true,
 	}
 
-	productRoutes := server.Group("api/product", middleware.AuthorizeJWT(jwtService))
-	{
-		productRoutes.GET("/", productHandler.All)
-		productRoutes.POST("/", productHandler.CreateProduct)
-		productRoutes.GET("/:id", productHandler.FindOneProductByID)
-		productRoutes.PUT("/:id", productHandler.UpdateProduct)
-		productRoutes.DELETE("/:id", productHandler.DeleteProduct)
+	return c.JSON(http.StatusOK, response)
+}
+
+func GetProduct(c echo.Context) error {
+	response := jsonResponse{
+		Data:   "Data Product Berhasil di Get",
+		Status: true,
 	}
 
-	descriptionRoutes := server.Group("api/description")
-	{
-		//descriptionRoutes.GET("/:id", descriptionHandler.FindOneDescriptionById)
-		descriptionRoutes.POST("/", descriptionHandler.CreateDescription)
-		descriptionRoutes.PUT("/:id", descriptionHandler.UpdateDescription)
+	return c.JSON(http.StatusOK, response)
+}
+
+func GetCity(c echo.Context) error {
+	response := jsonResponse{
+		Data:   "Data City Berhasil di Get",
+		Status: true,
 	}
 
-	projectRoutes := server.Group("api/project")
-	{
-		projectRoutes.GET("/", projectHandler.All)
-		projectRoutes.POST("/", projectHandler.CreateProject)
-		projectRoutes.GET("/:id", projectHandler.FindOneProjectById)
-		projectRoutes.PUT("/:id", projectHandler.UpdateProject)
-	}
-
-	careerRoutes := server.Group("api/career")
-	{
-		careerRoutes.GET("/", careerHandler.All)
-		careerRoutes.POST("/", careerHandler.CreateCareer)
-		careerRoutes.GET("/:id", careerHandler.FindOneCareerById)
-		careerRoutes.PUT("/:id", careerHandler.UpdateCareer)
-	}
-
-	produkRoutes := server.Group("api/produk")
-	{
-		produkRoutes.GET("/", produkHandler.All)
-		produkRoutes.POST("/", produkHandler.CreateProduk)
-		produkRoutes.GET("/:id", produkHandler.FindOneProdukById)
-		produkRoutes.GET("/kategori/:kategori", produkHandler.FindProdukByKategori)
-		//careerRoutes.PUT("/:id", careerHandler.UpdateCareer)
-	}
-
-	imageRoutes := server.Group("api/image")
-	{
-		imageRoutes.GET("/", imageHandler.All)
-		imageRoutes.POST("/", imageHandler.CreateImage)
-		//careerRoutes.GET("/:id", careerHandler.FindOneCareerById)
-		//careerRoutes.PUT("/:id", careerHandler.UpdateCareer)
-	}
-
-	checkRoutes := server.Group("api/check")
-	{
-		checkRoutes.GET("health", v1.Health)
-	}
-
-	server.Run()
+	return c.JSON(http.StatusOK, response)
 }
