@@ -11,6 +11,7 @@ import (
 	"gorm.io/gorm"
 )
 
+
 var (
 	db             		*gorm.DB               		= config.SetupDatabaseConnection()
 	userRepo       		repo.UserRepository    		= repo.NewUserRepo(db)
