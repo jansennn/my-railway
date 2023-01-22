@@ -3,7 +3,7 @@ package config
 import (
 	"fmt"
 	"github.com/joho/godotenv"
-	"ratu-melamine-be/entity"
+	"my-railway/entity"
 	"gorm.io/driver/postgres"
 	"gorm.io/gorm"
 	"log"
