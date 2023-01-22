@@ -3,10 +3,10 @@ package service
 import (
 	"github.com/mashingan/smapping"
 	"log"
-	"ratu-melamine-be/dto"
-	"ratu-melamine-be/entity"
-	"ratu-melamine-be/repo"
-	_image "ratu-melamine-be/service/image"
+	"my-railway/dto"
+	"my-railway/entity"
+	"my-railway/repo"
+	_image "my-railway/service/image"
 )
 
 type ImageService interface {

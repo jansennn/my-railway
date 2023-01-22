@@ -2,10 +2,10 @@ package service
 
 import (
 	"fmt"
-	"ratu-melamine-be/dto"
-	"ratu-melamine-be/entity"
-	"ratu-melamine-be/repo"
-	_career "ratu-melamine-be/service/career"
+	"my-railway/dto"
+	"my-railway/entity"
+	"my-railway/repo"
+	_career "my-railway/service/career"
 	"github.com/mashingan/smapping"
 	"log"
 )

@@ -3,7 +3,7 @@ package repo
 import (
 	"gorm.io/gorm"
 	"gorm.io/gorm/clause"
-	"ratu-melamine-be/entity"
+	"my-railway/entity"
 )
 
 type ImageRepository interface {

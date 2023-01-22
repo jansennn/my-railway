@@ -2,13 +2,13 @@ package service
 
 import (
 	"fmt"
-	"ratu-melamine-be/dto"
-	"ratu-melamine-be/entity"
-	"ratu-melamine-be/repo"
+	"my-railway/dto"
+	"my-railway/entity"
+	"my-railway/repo"
 	"github.com/mashingan/smapping"
 	"log"
 
-	_project "ratu-melamine-be/service/project"
+	_project "my-railway/service/project"
 	)
 
 type ProjectService interface {

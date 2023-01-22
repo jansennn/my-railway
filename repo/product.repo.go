@@ -1,7 +1,7 @@
 package repo
 
 import (
-	"ratu-melamine-be/entity"
+	"my-railway/entity"
 	"gorm.io/gorm"
 )
 

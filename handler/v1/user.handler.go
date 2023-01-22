@@ -7,10 +7,10 @@ import (
 
 	"github.com/dgrijalva/jwt-go"
 	"github.com/gin-gonic/gin"
-	"ratu-melamine-be/common/obj"
-	"ratu-melamine-be/common/response"
-	"ratu-melamine-be/dto"
-	"ratu-melamine-be/service"
+	"my-railway/common/obj"
+	"my-railway/common/response"
+	"my-railway/dto"
+	"my-railway/service"
 )
 
 type UserHandler interface {

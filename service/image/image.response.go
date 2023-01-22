@@ -1,7 +1,7 @@
 package image
 
 import (
-	"ratu-melamine-be/entity"
+	"my-railway/entity"
 )
 
 type ImageResponse struct {

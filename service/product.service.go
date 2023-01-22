@@ -7,11 +7,11 @@ import (
 	"strconv"
 
 	"github.com/mashingan/smapping"
-	"ratu-melamine-be/dto"
-	"ratu-melamine-be/entity"
-	"ratu-melamine-be/repo"
+	"my-railway/dto"
+	"my-railway/entity"
+	"my-railway/repo"
 
-	_product "ratu-melamine-be/service/product"
+	_product "my-railway/service/product"
 )
 
 type ProductService interface {

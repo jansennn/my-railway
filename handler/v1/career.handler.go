@@ -2,10 +2,10 @@ package v1
 
 import (
 	"github.com/gin-gonic/gin"
-	"ratu-melamine-be/common/obj"
-	"ratu-melamine-be/dto"
-	"ratu-melamine-be/service"
-	"ratu-melamine-be/common/response"
+	"my-railway/common/obj"
+	"my-railway/dto"
+	"my-railway/service"
+	"my-railway/common/response"
 	"net/http"
 	"strconv"
 )

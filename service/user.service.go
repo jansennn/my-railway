@@ -5,10 +5,10 @@ import (
 	"log"
 
 	"github.com/mashingan/smapping"
-	"ratu-melamine-be/dto"
-	"ratu-melamine-be/entity"
-	"ratu-melamine-be/repo"
-	_user "ratu-melamine-be/service/user"
+	"my-railway/dto"
+	"my-railway/entity"
+	"my-railway/repo"
+	_user "my-railway/service/user"
 	"gorm.io/gorm"
 )
 

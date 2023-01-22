@@ -3,10 +3,10 @@ package v1
 import (
 	"github.com/gin-gonic/gin"
 	"net/http"
-	"ratu-melamine-be/common/obj"
-	"ratu-melamine-be/common/response"
-	"ratu-melamine-be/dto"
-	"ratu-melamine-be/service"
+	"my-railway/common/obj"
+	"my-railway/common/response"
+	"my-railway/dto"
+	"my-railway/service"
 )
 
 type ImageHandler interface {

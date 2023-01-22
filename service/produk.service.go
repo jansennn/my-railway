@@ -5,11 +5,11 @@ import (
 	"log"
 
 	"github.com/mashingan/smapping"
-	"ratu-melamine-be/dto"
-	"ratu-melamine-be/entity"
-	"ratu-melamine-be/repo"
+	"my-railway/dto"
+	"my-railway/entity"
+	"my-railway/repo"
 
-	_produk "ratu-melamine-be/service/produk"
+	_produk "my-railway/service/produk"
 )
 
 type ProdukService interface {

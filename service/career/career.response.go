@@ -1,6 +1,6 @@
 package career
 
-import "ratu-melamine-be/entity"
+import "my-railway/entity"
 
 type CareerResponse struct {
 	ID  		int64  		`json:"id"`

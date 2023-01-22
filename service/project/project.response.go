@@ -1,6 +1,6 @@
 package project
 
-import "ratu-melamine-be/entity"
+import "my-railway/entity"
 
 type ProjectResponse struct {
 	ID  		int64  		`json:"id"`

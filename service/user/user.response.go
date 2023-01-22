@@ -1,6 +1,6 @@
 package _user
 
-import "ratu-melamine-be/entity"
+import "my-railway/entity"
 
 type UserResponse struct {
 	ID    int64  `json:"id"`

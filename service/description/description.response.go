@@ -1,7 +1,7 @@
 package _description
 
 import (
-	"ratu-melamine-be/entity"
+	"my-railway/entity"
 )
 
 type DescriptionResponse struct {

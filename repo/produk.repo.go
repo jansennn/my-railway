@@ -2,7 +2,7 @@ package repo
 
 import (
 	"gorm.io/gorm/clause"
-	"ratu-melamine-be/entity"
+	"my-railway/entity"
 	"gorm.io/gorm"
 )
 

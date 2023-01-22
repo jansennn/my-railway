@@ -1,8 +1,8 @@
 package _produk
 
 import (
-	"ratu-melamine-be/entity"
-	_image "ratu-melamine-be/service/image"
+	"my-railway/entity"
+	_image "my-railway/service/image"
 )
 
 type ProdukResponse struct {

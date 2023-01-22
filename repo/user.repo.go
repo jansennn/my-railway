@@ -3,7 +3,7 @@ package repo
 import (
 	"log"
 
-	"ratu-melamine-be/entity"
+	"my-railway/entity"
 	"golang.org/x/crypto/bcrypt"
 	"gorm.io/gorm"
 )
