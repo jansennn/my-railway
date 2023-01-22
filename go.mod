@@ -15,6 +15,15 @@ require (
 	golang.org/x/sys v0.3.0 // indirect
 	golang.org/x/text v0.5.0 // indirect
 	golang.org/x/time v0.2.0 // indirect
+
+		github.com/dgrijalva/jwt-go v3.2.0+incompatible
+    	github.com/gin-contrib/cors v1.3.1
+    	github.com/gin-gonic/gin v1.7.1
+    	github.com/joho/godotenv v1.4.0
+    	github.com/mashingan/smapping v0.1.6
+    	golang.org/x/crypto v0.0.0-20210415154028-4f45737414dc
+    	gorm.io/driver/postgres v1.0.8
+    	gorm.io/gorm v1.21.8
 )
 
 
