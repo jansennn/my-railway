@@ -1,4 +1,4 @@
-module tutor/heroku
+module ratu-melamine-be
 
 go 1.18
 
