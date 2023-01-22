@@ -2,16 +2,26 @@ package main
 
 import (
 	"fmt"
+	"github.com/gin-contrib/cors"
+	"gorm.io/gorm"
 	"net/http"
 	"os"
 
 	"github.com/labstack/echo/v4"
 	"github.com/labstack/echo/v4/middleware"
+	"ratu-melamine-be/config"
+)
+
+var (
+	db             		*gorm.DB               		= config.SetupDatabaseConnection()
 )
 
 func main() {
 	// Echo instance
 	e := echo.New()
+	defer config.CloseDatabaseConnection(db)
+	config := cors.DefaultConfig()
+	config.AllowAllOrigins = true
 
 	// Middleware
 	e.Use(middleware.Logger())
